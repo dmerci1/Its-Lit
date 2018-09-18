@@ -6,6 +6,7 @@ import SavedBarsScreen from './SavedBarsScreen';
 import SettingsScreen from './SettingsScreen';
 
  const Navigator = createBottomTabNavigator({
+  // login: { screen: LoginScreen },
   bars: { screen: SavedBarsScreen},
   map: { screen: MapScreen },
   settings: { screen: SettingsScreen }

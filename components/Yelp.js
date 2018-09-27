@@ -22,6 +22,12 @@ const getLocalBars = userLocation => {
         return {
           name: business.name,
           coords: business.coordinates,
+          location: business.location.address1,
+          phone: business.display_phone,
+          hours: business.hours,
+          price: business.price,
+          distance: business.distance,
+          image: business.image_url
         }
       })
       )

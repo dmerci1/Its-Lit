@@ -13,7 +13,7 @@ class Map extends Component {
 
   renderMarkers() {
     return this.props.places.map((place, i) => (
-      <Marker key={i} title={place.name} coordinate={place.coords} />
+      <Marker key={i} title={place.name} coordinate={place.coords} image={place.photos} />
     ));
   }
 
@@ -21,7 +21,6 @@ class Map extends Component {
    const { region } = this.props;
 
     return (
-
       <MapView
         style={{ width: '100%', height: '100%' }}
         region={region}

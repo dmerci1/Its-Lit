@@ -7,7 +7,7 @@ class LoadingScreen extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
-        this.props.navigation.navigate('list');
+        this.props.navigation.navigate('map');
       } else {
         this.setState({ loggedIn: false });
         this.props.navigation.navigate('login')

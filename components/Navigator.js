@@ -1,11 +1,13 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
+import { Icon } from 'native-base';
 import LoadingScreen from './LoadingScreen';
 import LoginScreen from './LoginScreen';
 import MapScreen from './MapScreen';
 import SavedBarsScreen from './SavedBarsScreen';
 import SettingsScreen from './SettingsScreen'
-import AlbumList from './AlbumList';
+import BarListScreen from './BarListScreen';
+import ViewBarScreen from './ViewBarScreen';
 
 
 const AuthNav = createBottomTabNavigator({
@@ -13,15 +15,30 @@ const AuthNav = createBottomTabNavigator({
     navigationOptions: {
       tabBarVisible: false
       }
-    }
+    },
+
 });
 
 const HomeNav = createBottomTabNavigator({
- bars: { screen: SavedBarsScreen },
- map: { screen: MapScreen },
- settings: { screen: SettingsScreen },
- list: { screen: AlbumList }
-});
+ bars: SavedBarsScreen,
+ map:  MapScreen,
+ settings: SettingsScreen,
+},
+{
+  tabBarOptions: {
+    style: {
+      backgroundColor: '#ff0000',
+    },
+    labelStyle: {
+      fontSize: 25,
+      color: 'white',
+    }
+  },
+}
+);
+ //view: { screen: ViewBarScreen }
+
+
 
  const Navigator = createBottomTabNavigator({
   loading: { screen: LoadingScreen,
@@ -38,7 +55,12 @@ const HomeNav = createBottomTabNavigator({
     navigationOptions: {
       tabBarVisible: false
       }
-    }
+    },
+    list: { screen: BarListScreen,
+      navigationOptions: {
+        tabBarVisible: false
+        }
+       },
 });
 
 export default Navigator;

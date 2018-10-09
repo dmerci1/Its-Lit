@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import {  View, FlatList, Text, Image } from 'react-native';
+import { List, ListItem, Button, Card, CardItem } from 'native-base';
 import axios from 'axios';
-import { Location, Permissions, MapView } from 'expo';
+import { Location, Permissions } from 'expo';
 import BarDetails from './BarDetails';
 import YelpService from './Yelp';
 
@@ -10,20 +11,18 @@ const deltas = {
   longitudeDelta: 0.0421
 };
 
-class AlbumList extends Component {
+class BarListScreen extends Component {
   state = { albums: [],
     region: null,
      bars: []
    };
 
-   componentWillMount() {
-     axios.get('https://rallycoding.herokuapp.com/api/music_albums')
-       .then(response => this.setState({ albums: response.data }));
-   }
   componentDidMount() {
     this.getLocationAsync();
   }
+  componentWillReceiveProps(nextProps) {
 
+  }
   onRegionChangeComplete = (region) => {
     this.setState({ region });
   }
@@ -55,27 +54,33 @@ getLocalBars = async () => {
   const { latitude, longitude } = this.state.region;
   const userLocation = { latitude, longitude };
   const bars = await YelpService.getLocalBars(userLocation);
+  console.log(bars.length);
   this.setState({ bars });
-  console.log(bars);
 };
 
-  renderBars() {
-    return this.state.bars.map(bar =>
-      <BarDetails key={bar.title} bar={bar} />
-    );
-  }
+  showBar(bar) {
+     this.props.navigation.navigate('view', { bar });
+}
 
   render() {
     console.log(this.state);
 
     return (
-    <View>
-      <ScrollView>
-        {this.renderBars()}
-      </ScrollView>
-    </View>
+      <FlatList
+        data={this.state.bars}
+        renderItem={
+          ({ item }) => (
+            <BarDetails
+            bar={item}
+            navigation={this.props.navigation}
+          //  onRowPress={(bar) => this.showBar(bar)}
+            />
+          )
+        }
+          keyExtractor={item => item.id}
+      />
     );
   }
 }
 
-export default AlbumList;
+export default BarListScreen;

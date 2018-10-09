@@ -14,12 +14,14 @@ const getLocalBars = userLocation => {
     .get('/businesses/search', {
       params: {
         categories: 'bars, All',
-        ...userLocation
-      }
+          radious: 10,
+        ...userLocation,
+        }
     })
     .then(res =>
       res.data.businesses.map(business => {
         return {
+          id: business.id,
           name: business.name,
           coords: business.coordinates,
           location: business.location.address1,

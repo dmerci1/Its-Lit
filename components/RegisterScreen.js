@@ -3,9 +3,9 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { Text, View } from 'react-native';
 import { Container, Content, Form, Item, Label, Input, Spinner, Button, Card } from 'native-base';
-import { emailChanged, passwordChanged, loginUser, loginUserSuccess } from '../actions';
+import { emailChanged, passwordChanged, createUser } from '../actions';
 
-class LoginScreen extends Component {
+class RegisterScreen extends Component {
   onEmailChange(text) {
   this.props.emailChanged(text);
 }
@@ -14,7 +14,7 @@ onPasswordChange(text) {
 }
 onButtonPress() {
   const { email, password } = this.props;
-  this.props.loginUser({ email, password });
+  this.props.createUser({ email, password });
 }
 
 renderButton() {
@@ -28,7 +28,7 @@ renderButton() {
       danger
       onPress={this.onButtonPress.bind(this)}
       >
-        <Text>Log In</Text>
+        <Text>Register</Text>
       </Button>
     );
 }
@@ -72,4 +72,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser})(LoginScreen);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, createUser})(RegisterScreen);

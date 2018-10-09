@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'native-base';
 import LoadingScreen from './LoadingScreen';
 import LoginScreen from './LoginScreen';
+import RegisterScreen from './RegisterScreen';
 import MapScreen from './MapScreen';
 import SavedBarsScreen from './SavedBarsScreen';
 import SettingsScreen from './SettingsScreen';
@@ -10,12 +11,8 @@ import BarListScreen from './BarListScreen';
 import ViewBarScreen from './ViewBarScreen';
 
 const AuthNav = createBottomTabNavigator({
-  login: { screen: LoginScreen,
-    navigationOptions: {
-      tabBarVisible: false
-      }
-    },
-
+  login: { screen: LoginScreen },
+  register: { screen: RegisterScreen }
 });
 
 const HomeNav = createBottomTabNavigator({

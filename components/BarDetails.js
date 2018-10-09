@@ -24,7 +24,10 @@ onRowPress() {
   render() {
     const { bar } = this.props;
     const { name, location, phone, image, distance } = bar;
-    const miles = { distance };
+    if ({ distance } >= 0.5)  {
+    bars.sort();
+    bars.pop();
+  }
     return (
       <Container>
               <Content>
@@ -47,7 +50,6 @@ onRowPress() {
                 </List>
               </Content>
             </Container>
-
 
     );
   }

@@ -5,10 +5,9 @@ import LoadingScreen from './LoadingScreen';
 import LoginScreen from './LoginScreen';
 import MapScreen from './MapScreen';
 import SavedBarsScreen from './SavedBarsScreen';
-import SettingsScreen from './SettingsScreen'
+import SettingsScreen from './SettingsScreen';
 import BarListScreen from './BarListScreen';
 import ViewBarScreen from './ViewBarScreen';
-
 
 const AuthNav = createBottomTabNavigator({
   login: { screen: LoginScreen,
@@ -21,7 +20,7 @@ const AuthNav = createBottomTabNavigator({
 
 const HomeNav = createBottomTabNavigator({
  bars: SavedBarsScreen,
- map:  MapScreen,
+ map: MapScreen,
  settings: SettingsScreen,
 },
 {

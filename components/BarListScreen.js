@@ -54,12 +54,13 @@ getLocalBars = async () => {
   const { latitude, longitude } = this.state.region;
   const userLocation = { latitude, longitude };
   const bars = await YelpService.getLocalBars(userLocation);
-  console.log(bars.length);
+
   this.setState({ bars });
 };
 
   showBar(bar) {
-     this.props.navigation.navigate('view', { bar });
+    firebase.database().ref('/bars')
+    .push({ bar })
 }
 
   render() {
@@ -73,7 +74,7 @@ getLocalBars = async () => {
             <BarDetails
             bar={item}
             navigation={this.props.navigation}
-          //  onRowPress={(bar) => this.showBar(bar)}
+            onRowPress={(bar) => this.showBar(bar)}
             />
           )
         }

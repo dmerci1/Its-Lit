@@ -72,4 +72,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, createUser})(RegisterScreen);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, createUser })(RegisterScreen);

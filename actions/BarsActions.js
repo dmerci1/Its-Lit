@@ -1,4 +1,7 @@
 import axios from 'axios';
+import {
+  GET_LOCAL_BARS
+} from './types';
 
 const YELP_API_KEY = '6INdFjgrtE61ZymdDNd53m9Wv9xhYQJFFCgXE-Z43P43OIsEsK0KFFykjRF_gmUGtwpoAFGDKpP4FUQIR3Y7RCzWbTKM3yKnjCESh17MhnarMxyvPLMC1eabXouiW3Yx';
 
@@ -26,15 +29,17 @@ const getLocalBars = userLocation => {
           coords: business.coordinates,
           location: business.location.address1,
           phone: business.display_phone,
+          hours: business.hours,
           price: business.price,
           distance: business.distance,
           image: business.image_url
         }
       })
       )
-      .catch(error => console.error(error))
-}
+      .catch(error => console.error(error));
+};
 
-export default {
-  getLocalBars
-}
+export const getBars = () => async(dispatch) => {
+  let { data } = getLocalBars;
+  dispatch({ type: GET_LOCAL_BARS, payload: data });
+};

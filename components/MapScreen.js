@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
+import { connect } from 'react-redux';
 import { Container, Header, Footer, FooterTab, Content, Button, Left, Right, Body, Icon, Card, CardItem } from 'native-base';
 import { Location, Permissions, MapView } from 'expo';
+import firebase from 'firebase';
 import Modal from 'react-native-modal';
 import { BarListModal } from './BarListModal';
 import Map from './Map';
 import YelpService from './Yelp';
+import { barCreate } from '../actions/BarActions';
 
 const deltas = {
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421
 };
-
-const Marker = MapView.Marker;
 
  class MapScreen extends Component {
 
@@ -61,6 +62,7 @@ const Marker = MapView.Marker;
      const userLocation = { latitude, longitude };
      const bars = await YelpService.getLocalBars(userLocation);
      this.setState({ bars, isModalVisible: !this.state.isModalVisible });
+     this.props.barCreate({ bars });
      console.log(bars.length);
 
    };
@@ -175,4 +177,4 @@ const styles = {
     }
   };
 
-export default MapScreen;
+export default connect (null, { barCreate })(MapScreen);

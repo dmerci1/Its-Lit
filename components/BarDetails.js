@@ -24,10 +24,9 @@ onRowPress() {
   render() {
     const { bar } = this.props;
     const { name, location, phone, image, distance } = bar;
-    if ({ distance } >= 0.5)  {
-    bars.sort();
-    bars.pop();
-  }
+    const metersToMiles = distance / 1609.344;
+    const miles = metersToMiles.toFixed(2);
+
     return (
       <Container>
               <Content>
@@ -45,7 +44,7 @@ onRowPress() {
                     <Text>{ phone }</Text>
                   </ListItem>
                   <ListItem>
-                    <Text>{ distance / 1609.344 } miles away</Text>
+                    <Text>{ miles } miles away</Text>
                   </ListItem>
                 </List>
               </Content>

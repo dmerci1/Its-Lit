@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { Text, View } from 'react-native';
 import { Container, Content, Form, Item, Label, Input, Spinner, Button, Card } from 'native-base';
-import { emailChanged, passwordChanged, loginUser, loginUserSuccess } from '../actions';
+import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginScreen extends Component {
   onEmailChange(text) {
@@ -72,4 +72,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser})(LoginScreen);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginScreen);
